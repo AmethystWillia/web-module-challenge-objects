@@ -58,12 +58,16 @@ const burger = {
   
   discount(string) {
     if(string === 'teacher' || string === 'student') {
-      return 'This is working'
+      return this.price - (this.price * 0.25);
+    } else if (string === 'public') {
+      return this.price - (this.price * 0.1);
     }
   }
 }
 
 console.log(burger.discount('student'));
+console.log(burger.discount('teacher'));
+console.log(burger.discount('public'));
 
 ///////////////Reviews (MVP)///////////////////
 const reviews = [
@@ -81,9 +85,15 @@ const reviews = [
 Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
+function findReview (name) {
+  for (let i = 0; i < reviews.length; i++) {
+    if (reviews[i].name === name) {
+      return reviews[i].feedback;
+    }
+  }
+}
 
-
-
+//console.log(findReview('Julius'));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Reyna's feedback is missing! Use what you know to do the following: (no function needed) 
@@ -91,9 +101,9 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 
+reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays"
 
-
-
+//console.log(reviews[7].feedback);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Write a function that creates an object with name, rating, feedback, add the new review to the end of an array and returns the resulting array
@@ -104,9 +114,12 @@ Write a function that creates an object with name, rating, feedback, add the new
   4. should return the resulting array
 */
 
-function addReview(/*Your Code Here */){
-  /*Your Code Here */
+function addReview(array, name, rating, feedback){
+  array.push({name, rating, feedback});
+  return array;
 }
+
+addReview(reviews, 'Daniela', 5, 'Beautiful atmosphere and wonderful vegan options!')
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Write a function to return a review based on the index of the review in the array.
@@ -119,12 +132,11 @@ Use the getReviewByIndex function below to do the following:
 */
 
 
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
+function getReviewByIndex(array, index) {
+  return `${array[index].name} gave the restaurant a ${array[index].rating} star review, and their feedback was: ${array[index].feedback}`
 }
 
-
-  
+console.log(getReviewByIndex(reviews, 2));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Write a function to get information about the most recent (last) review called `getLastReview`
@@ -138,11 +150,12 @@ Use the getLastReview function below to do the following:
 */
 
 
-function getLastReview(/*Your code here*/) {
-  /*Your code here*/
+function getLastReview(array) {
+  let i = array.length - 1;
+  return `${array[i].name} gave the restaurant a ${array[i].rating} star review, and their feedback was: ${array[i].feedback}`
 } 
 
-
+console.log(getLastReview(reviews));
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
@@ -160,11 +173,18 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+ function getReviewByRating(array, rating) {
+    let ratedReviews = [];
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].rating === rating) {
+        ratedReviews.push(array[i]);
+      }
+    }
+    return ratedReviews;
   }
 
-  
+  console.log(getReviewByRating(reviews, 4));
+
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
 Use the getLongReviews function below to do the following:
   1. Receive the array that holds all the reviews
