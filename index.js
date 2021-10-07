@@ -15,9 +15,12 @@ The function should:
   Example createMenuItem('tacos', 8, 'Lunch') should return {name: 'tacos', price: 8, category: 'Lunch'}
 */
 
-function createMenuItem(/*Your code here*/){
-    /*Your code here*/
+function createMenuItem(name, price, category){
+    return {name, price, category}
 }
+
+let tacos = createMenuItem('tacos', 8, 'Lunch');
+console.log(tacos);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Invoke your function!
@@ -28,8 +31,13 @@ Test your createMenuItems function by doing the following:
   
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
+let sushi = createMenuItem('sushi', 15, 'Dinner');
+let fishnchips = createMenuItem('fish and chips', 10, 'Lunch');
+let pancakes = createMenuItem('pancakes', 6, 'Breakfast');
 
-
+console.log(sushi);
+console.log(fishnchips);
+console.log(pancakes);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to the 
@@ -48,9 +56,14 @@ const burger = {
   price: 18, 
   category: "Lunch", 
   
+  discount(string) {
+    if(string === 'teacher' || string === 'student') {
+      return 'This is working'
+    }
+  }
 }
 
-
+console.log(burger.discount('student'));
 
 ///////////////Reviews (MVP)///////////////////
 const reviews = [
